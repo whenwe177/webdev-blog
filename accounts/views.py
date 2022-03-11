@@ -15,7 +15,6 @@ def signUp(req):
             form.save()       
             return redirect("/account/login")
         else:
-            print(form.errors)
             form = RegisterForm(req.POST)
 
     return render(req, "signUp.html", context)
