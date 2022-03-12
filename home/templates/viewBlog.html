@@ -4,9 +4,34 @@
     {{ post.title }}
 {% endblock %}
 
+{% block meta %}
+    {% load static %}
+    
+    <script defer src="{% static 'js/crudComment.js' %}"></script>
+    
+{% endblock %}
+
+
 {% block content %} 
     <article>
         <h2>{{post.title}}</h2>
         <p>{{post.content}}</p>
     </article>
+
+    <form method="POST" action="{% url 'addComment' post.id %}" id="add-comment">
+        {% csrf_token %}
+        <ul>
+            <li>
+                <label for="content">Content</label>
+                <textarea id="content" name="content"></textarea>
+            </li>
+            <button type="submit" id="btn--add">Comment</button>
+        </ul>
+    </form>
+
+    <div class="comments">
+        {% include "comments.html" %}
+    </div>
+    
+
 {% endblock %}

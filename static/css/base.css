@@ -1,0 +1,12 @@
+@import url("variables.css");
+
+.modal {
+    height: 80vh;
+    width: 70vw;
+    border: solid 1px black;
+    display: none;
+}
+
+.modal.show {
+    display: block;
+}

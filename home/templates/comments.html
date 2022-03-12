@@ -1,0 +1,23 @@
+{% for comment in comments %}
+    <div data-comment="{{comment.id}}" class="card--comment">
+        <article>
+            <p>{{comment.content}}</p>
+            <p>{{comment.commenter}}</p>
+            <p>{{comment.dateCreated}}</p>
+        </article>
+        {% if user.is_authenticated and user == comment.commenter %}
+            <form method="POST" action="{% url 'deleteComment' comment.id %}">
+                <button type="submit" class="btn--delete">Delete</button>
+            </form>
+
+            <button type="submit" class="btn--modal-show" data-comment-id="{{comment.id}}">Edit</button>
+            <div class="modal" data-comment-id="{{comment.id}}">
+                <h2>Edit Post</h2>
+                <form method="POST" action="{% url 'editComment' comment.id %}" class="form--edit">
+                    <textarea>{{comment.content}}</textarea>
+                    <button type="submit" class="btn--edit">Edit</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endfor %}
