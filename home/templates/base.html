@@ -25,8 +25,11 @@
             <a href="/" class="logo">It's Me!</a>
         </div>
         <ul class="navbar__links">
-            <li><a href="/profile">My Stories</a></li>
+            <li><a href="/profile">About Me</a></li>
             <li><a href="/searchblog">My Blog</a></li>
+            {% if user.is_staff %} 
+            <li><a href="/create-blog">Tell a story</a></li>
+            {% endif %}
             {% if user.is_authenticated %}
             <li><a href="/account/logout">Logout</a></li>
             <li><p>Hello, {{user}}!</p></li>
