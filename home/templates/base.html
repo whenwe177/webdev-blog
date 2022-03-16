@@ -9,6 +9,7 @@
     {% endblock %}
 
     {% load static %}
+
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
 
     <title>
@@ -17,7 +18,30 @@
 
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <a href="/" class="logo">It's Me!</a>
+        </div>
+        <ul class="navbar__links">
+            <li><a href="/profile">My Stories</a></li>
+            <li><a href="/searchblog">My Blog</a></li>
+            {% if user.is_authenticated %}
+            <li><p>Hello, {{user}}!</p></li>
+            {% else %}
+            <li href="/account/login">Log in</li>
+            {% endif %}
+        </ul>
+
+        <svg class="toggler" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc.<path d="M246.6 233.4l-160-160c-12.5-12.5-32.75-12.5-45.25 0s-12.5 32.75 0 45.25L178.8 256l-137.4 137.4c-12.5 12.5-12.5 32.75 0 45.25C47.63 444.9 55.81 448 64 448s16.38-3.125 22.62-9.375l160-160C259.1 266.1 259.1 245.9 246.6 233.4zM438.6 233.4l-160-160c-12.5-12.5-32.75-12.5-45.25 0s-12.5 32.75 0 45.25L370.8 256l-137.4 137.4c-12.5 12.5-12.5 32.75 0 45.25C239.6 444.9 247.8 448 256 448s16.38-3.125 22.62-9.375l160-160C451.1 266.1 451.1 245.9 438.6 233.4z"/></svg>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="{% static 'js/navbar.js' %}"> </script>
+    <script> </script>
+    
 </body>
 </html>

@@ -1,0 +1,44 @@
+.clip-path {
+
+    margin: 0;
+    height: 50vh;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 60%, 66% 100%, 0 80%);
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 66% 100%, 0 80%);
+
+    background: var(--vermillion);
+
+    padding: 3rem 0 0 3rem;
+    
+}
+
+.clip-path__text{
+    margin: 0;
+
+    font-family: "Titillium Web", sans-serif;
+    color: white;
+}
+
+h2.clip-path__text {
+    font-size: 4rem;
+}
+
+p.clip-path__text {
+    font-size: 1.3rem;
+}
+
+.hero-display__button {
+    width: 25ch;
+    cursor: pointer;
+
+    margin: 1.2rem 0;
+}
+
+.display-blog {
+    
+}
+
+@media screen and (max-width: 400px) {
+    .clip-path {
+        height: 30vh;
+    }
+}

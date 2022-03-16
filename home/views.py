@@ -22,8 +22,8 @@ def loadJson(reqBody):
 def homePage(req):
     context = {}
 
-    top5Posts = BlogPost.objects.all()[:5]
-    context["posts"] = top5Posts
+    top3Posts = BlogPost.objects.all()[:3]
+    context["posts"] = top3Posts
 
     return render(req, "home.html", context)
 
