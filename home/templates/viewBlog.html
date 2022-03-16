@@ -25,8 +25,8 @@
 
     <div class="chevron"></div>
     <div class="comment-form-div">
-        <h4 class="mid-text">Comment up</h4>
         {% if user.is_authenticated %}
+        <h4 class="mid-text">Comment up</h4>
         <form method="POST" action="{% url 'addComment' post.id %}" id="add-comment" class="comment-form">
             {% csrf_token %}
                 <textarea id="content" name="content" placeholder="Say something..."></textarea>

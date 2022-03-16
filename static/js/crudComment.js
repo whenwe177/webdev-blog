@@ -115,6 +115,8 @@ function listenEditComment(form) {
         event.preventDefault();
 
         if (textArea.value === initialContent) {
+            modal.classList.toggle("show");
+            overlay.classList.toggle("active");
             return;
         }
 

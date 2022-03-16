@@ -22,7 +22,7 @@ def loadJson(reqBody):
 def homePage(req):
     context = {}
 
-    top3Posts = BlogPost.objects.all()[:3]
+    top3Posts = BlogPost.objects.order_by("-dateCreated")[:3]
     context["posts"] = top3Posts
 
     return render(req, "home.html", context)
@@ -30,7 +30,7 @@ def homePage(req):
 def searchBlog(req):
     context = {}
 
-    allPosts = BlogPost.objects.all()
+    allPosts = BlogPost.objects.order_by("-dateCreated")
     context["posts"] = allPosts
 
     return render(req, "searchblog.html", context)

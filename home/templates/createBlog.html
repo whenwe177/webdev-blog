@@ -14,8 +14,20 @@
 
         <form method="POST" action="{% url 'createBlog' %}">
             {% csrf_token %} 
-
-            {{ form.as_ul }}
+            <ul>
+                <li>
+                    <label for="{{form.title.id_for_label}}">Title</label>
+                    <div>
+                        {{ form.title }}
+                    </div>
+                </li>
+                <li>
+                    <label for="{{form.content.id_for_label}}">What do I think?</label>
+                    <div>
+                        {{ form.content }}
+                    </div>
+                </li>
+            </ul>
 
             <button type="submit" class="button button--eton">Post it!</button>
         </form>

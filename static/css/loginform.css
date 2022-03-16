@@ -46,6 +46,11 @@ input[type=password] {
     transform: translateX(50%);
 }
 
+.form-below {
+    display: flex;
+    justify-content: space-between;
+}
+
 .wrapper-container-login {
     display: grid;
     place-items: center;
