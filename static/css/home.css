@@ -82,6 +82,37 @@ p.clip-path__text {
     background: var(--beige);
 }
 
+#first-text,
+#second-text,
+#third-text {
+    transform: translateX(-5%);
+    opacity: 0;
+}
+
+#first-text {
+    animation: fade-left 500ms ease-in forwards;
+}
+
+#second-text {
+    animation: fade-left 500ms ease-in 500ms forwards;
+}
+
+#third-text {
+    animation: fade-left 500ms ease-in 1s forwards;
+}
+
+
+@keyframes fade-left {
+    from {
+        transform: translateX(-5%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     .blog-content {
         flex-direction: column;

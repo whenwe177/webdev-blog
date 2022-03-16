@@ -5,7 +5,7 @@ textarea {
     border-radius: 0.25rem;
 
     height: 10ch;
-    width: 50ch;
+    width: clamp(40%, 50ch, 70%);
 
     font-family: "Titillium Web", sans-serif;
     font-size: 1.1rem;
