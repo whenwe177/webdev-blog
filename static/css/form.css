@@ -1,0 +1,19 @@
+textarea,
+textarea:focus,
+textarea:focus-visible,
+textarea {
+    border-radius: 0.25rem;
+
+    height: 10ch;
+    width: 50ch;
+
+    font-family: "Titillium Web", sans-serif;
+    font-size: 1.1rem;
+    
+    resize: none;
+
+    padding: 0.25rem;
+
+    background: var(--dark-purple);
+    color: white;
+}

@@ -1,14 +1,23 @@
 {% extends "base.html" %} 
 
+{% block meta %}
+
+{% load static %}
+<link href="{% static 'css/loginform.css' %}" rel="stylesheet">
+<link href="{% static 'css/form.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %} 
-    <h2>Hello, me!</h2>
-    <h2>What do I have in mind?</h2>
+    <h2 class="big-text poppins">Hello, me!</h2>
+    <div class="login-container translated">
+        <h2 class="mid-text">What do I have in mind?</h2>
 
-    <form method="POST" action="{% url 'createBlog' %}">
-        {% csrf_token %} 
+        <form method="POST" action="{% url 'createBlog' %}">
+            {% csrf_token %} 
 
-        {{ form }}
+            {{ form.as_ul }}
 
-        <button type="submit">Post it!</button>
-    </form>
+            <button type="submit" class="button button--eton">Post it!</button>
+        </form>
+    </div>
 {% endblock %}

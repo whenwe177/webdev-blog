@@ -6,16 +6,70 @@ body {
     background: var(--beige);
 }
 
+main {
+    margin-top: 90px;
+}
+
+.overlay {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    pointer-events: none;
+
+    height: 100vh;
+
+    z-index: 6;
+
+}
+
+.overlay.active {
+    background: hsla(127, 4%, 37%, 0.5);
+}
+
 .modal {
-    height: 80vh;
-    width: 70vw;
-    border: solid 1px black;
-    display: none;
+    width: 40vw;
+    transform: translateX(-50%) translateY(-50%) scale(0);
+    position: fixed;
+    top: 50%;
+    left: 50%;
     transition: all 300ms ease-out;
+
+    padding: 2rem;
+    z-index: 8;
+
+    border-radius: 1.5rem;
+
+    background: var(--thistle);
+
+
+}
+
+.modal-delete {
+    width: 40vw;
+    transform: translateX(-50%) translateY(-50%) scale(0);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transition: all 300ms ease-out;
+
+    padding: 2rem;
+    z-index: 4;
+
+    border-radius: 1.5rem;
+
+    background: var(--thistle);
+}
+
+.modal-delete.show {
+    transform: translateX(-50%) translateY(-50%) scale(1);
 }
 
 .modal.show {
-    display: block;
+    transform: translateX(-50%) translateY(-50%) scale(1);
 }
 
 .navbar {
@@ -25,6 +79,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 4;
 
     
     
@@ -105,6 +165,9 @@ body {
     transition: padding 300ms ease-out;
 
     border-radius: 2rem;
+    border: none;
+
+    cursor: pointer;
 }
 
 .button--wicons:hover {
@@ -129,11 +192,77 @@ body {
 .small-text {
     font-family: "Titillium Web", sans-serif;
     font-size: 1.2rem;
+    margin: 0 0;
+}
+
+.smaller-text {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 1rem;
+    margin: 0 0;
 }
 
 .mid-text {
     font-family: "Titillium Web", sans-serif;
     font-size: 2.4rem;
+    margin: 0 0;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: padding 300ms ease-out;
+
+    font-family: "Titillium Web", sans-serif;
+    font-size: 1.25rem;
+
+    color: black;
+
+    border-radius: 1.5rem;
+    border: none;
+    
+    margin: 1.5rem 0;
+
+    cursor: pointer;
+}
+
+.button-wrapper {
+    margin-top: 1.15rem;
+}
+
+.button:hover {
+    padding: 0.5rem 2rem;
+
+}
+
+.button--eton {
+    background: var(--eton);
+}
+
+.button--purple {
+    background: var(--dark-purple);
+    color: white;
+}
+
+.button-small {
+    font-size: 1rem;
+}
+
+.poppins {
+    font-family: "Poppins", sans-serif;
+}
+
+.min-margin {
+    margin: 0.25rem;
+}
+
+.button--ver {
+    background: var(--vermillion);
+    color: white;
+}
+
+.crud-div {
+    display: flex;
+    justify-content: space-between;
 }
 
 @media screen and (max-width: 700px) {

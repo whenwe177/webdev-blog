@@ -1,23 +1,36 @@
 {% for comment in comments %}
     <div data-comment="{{comment.id}}" class="card--comment">
         <article>
-            <p>{{comment.content}}</p>
-            <p>{{comment.commenter}}</p>
-            <p>{{comment.dateCreated}}</p>
+            <p class="small-text">{{comment.content}}</p>
+            <p class="smaller-text">by {{comment.commenter}} on {{comment.dateCreated}}</p>
         </article>
-        {% if user.is_authenticated and user == comment.commenter %}
-            <form method="POST" action="{% url 'deleteComment' comment.id %}">
-                <button type="submit" class="btn--delete">Delete</button>
-            </form>
+        <div class="crud-div">
 
-            <button type="submit" class="btn--modal-show" data-comment-id="{{comment.id}}">Edit</button>
-            <div class="modal" data-comment-id="{{comment.id}}">
-                <h2>Edit Post</h2>
-                <form method="POST" action="{% url 'editComment' comment.id %}" class="form--edit">
-                    <textarea>{{comment.content}}</textarea>
-                    <button type="submit" class="btn--edit">Edit</button>
-                </form>
-            </div>
-        {% endif %}
+            {% if user.is_authenticated and user == comment.commenter %}
+                <button type="button" class="btn--delete-show button-small button button--ver" data-comment-id="{{comment.id}}">Delete</button>
+                <button type="submit" class="btn--modal-show button min-margin white-color button-small button--eton" style="height: fit-content; transform: translateY(50%)" data-comment-id="{{comment.id}}">Edit</button>
+                <div class="modal" data-comment-id="{{comment.id}}">
+                    <h2 class="mid-text">Edit Post</h2>
+                    <form method="POST" action="{% url 'editComment' comment.id %}" class="form--edit">
+                        <textarea>{{comment.content}}</textarea>
+                        <div class="crud-div">
+                            <button class="btn--close-modal button-small button button--ver btn--close" data-comment-id="{{comment.id}}">Close</button>
+                            <button type="submit" class="btn--edit button-small button button--eton">Edit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-delete" data-comment-id="{{comment.id}}">
+                    <h2 class="mid-text">Delete Post</h2>
+                    <p class="small-text">Do you want to delete your comment?</p>
+                    <div class="crud-div">
+                        <button class="btn--close-modal--delete button-small button button--eton btn--close" data-comment-id="{{comment.id}}">Close</button>
+                        <form method="POST" action="{% url 'deleteComment' comment.id %}">
+                            <button type="submit" class="button min-margin button-small btn--delete button--ver" style="transform: translateY(50%);">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
     </div>
 {% endfor %}

@@ -1,8 +1,11 @@
 :root {
     --beige: hsla(62, 51%, 88%, 1);
     --dark-purple: hsla(234, 12%, 17%, 1);
+    --mid-purple: hsla(234, 12%, 35%, 1);
     --vermillion: hsla(356, 63%, 54%, 1);
-    --eton: hsla(150, 33%, 60%, 1);
+    --dark-vermillion: hsla(356, 63%, 70%, 1);
+    --eton: hsla(150, 33%, 60%, 1); 
+    --thistle: hsla(318, 22%, 80%, 1); 
 
     box-sizing: border-box;
 }

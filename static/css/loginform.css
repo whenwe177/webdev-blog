@@ -1,0 +1,55 @@
+li {
+    list-style: none;
+}
+
+p, label, li {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 1.1rem;
+}
+
+input[type=text],
+input[type=password] {
+    border-radius: 0.25rem;
+
+
+    font-family: "Titillium Web", sans-serif;
+    font-size: 1.1rem;
+    
+    resize: none;
+
+    padding: 0.25rem;
+
+    background: var(--eton);
+    color: white;
+
+    border: none;
+
+    margin: 0.75rem 0;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 1rem;
+
+    background-color: var(--thistle);
+    padding: 1rem;
+    width: 50%;
+
+    box-shadow: -2px 10px 18px -4px rgba(107,107,107,0.68);
+}
+
+.login-container.translated {
+    transform: translateX(50%);
+}
+
+.wrapper-container-login {
+    display: grid;
+    place-items: center;
+
+    height: calc(100vh - 100px);
+    
+}

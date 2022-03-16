@@ -1,0 +1,31 @@
+{% extends "base.html" %} 
+
+{% block meta %}
+
+{% load static %}
+<link href="{% static 'css/searchblog.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %} 
+
+    <div class="blog-content">
+    
+        <h2 class="big-text">My blog</h2>
+        <p class="small-text">Everyone has their stories. Here are mine.</p>
+        {% for post in posts %}
+        <div class="blog--card">
+            <div class="card--header">
+                <h4 class="mid-text">{{post.title}}</h4>
+            </div>
+            <div class="card--body">
+                <p class="smaller-text">On {{post.dateCreated}}</p>
+                <div class="button-wrapper">
+                    <a class="button button--eton" href="{% url 'viewBlog' post.id %}">View More</a>            
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

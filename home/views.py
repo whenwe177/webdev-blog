@@ -27,6 +27,18 @@ def homePage(req):
 
     return render(req, "home.html", context)
 
+def searchBlog(req):
+    context = {}
+
+    allPosts = BlogPost.objects.all()
+    context["posts"] = allPosts
+
+    return render(req, "searchblog.html", context)
+
+def profile(req):
+    context = {}
+    return render(req, "profile.html", context)
+
 @staff_member_required(login_url="/account/login?next=/create-blog/")
 def createBlogPost(req):
     context = {}
@@ -76,7 +88,7 @@ def addComment(req, postId):
         comment = Comment.objects.create(content = content, commenter = req.user, post = post)
         comment.save()
 
-        allComments = Comment.objects.all()
+        allComments = Comment.objects.filter(post = post)
 
         commentList = render_to_string(
             "comments.html", {

@@ -4,13 +4,17 @@ const PRODUCTION_URL = inProduction ? "https://webdev-blog-alexandercb.herokuapp
 const allCommentPage = document.querySelector(".comments");
 const addComment = document.querySelector("#add-comment");
 const allEditForms = document.querySelectorAll(".form--edit");
+const overlay = document.querySelector(".overlay");
 
 function addListenerToElements(elementClass, callback) {
     const allElements = document.querySelectorAll(elementClass);
     allElements.forEach((element) => callback(element));
 }
 
-const listenDeleteButton = (button) => {
+function listenDeleteButton (button) {
+    const overlay = document.querySelector(".overlay");
+    if(overlay.classList.contains("active")) return;
+    
     const targetUrl = button.parentElement.action;
 
     const fetchDelete = async (event) => {
@@ -27,11 +31,18 @@ const listenDeleteButton = (button) => {
             credentials: "same-origin",
         });
 
+        
         if (response.status !== 200) {
             return;
         }
+        
+        overlay.classList.toggle("active");
+        
+        const modal = button.parentElement.parentElement;
 
-        const parent = button.parentElement.parentElement;
+        const parent = modal.parentElement.parentElement.parentElement;
+
+        modal.remove();
         parent.remove();
     }
 
@@ -39,20 +50,64 @@ const listenDeleteButton = (button) => {
 }
 
 
-const listenShowEditForm = (button) => {
-
+function listenShowEditForm (button) {
+    const overlay = document.querySelector(".overlay");
     const commentId = button.dataset.commentId;
     const formModal = document.querySelector(`.modal[data-comment-id="${commentId}"]`);
-
-    const showForm = (event) => {   
+    
+    const showForm = (event) => {  
         formModal.classList.toggle("show");
+        overlay.classList.toggle("active");
     }
 
     button.addEventListener("click", showForm);
 
 }
 
-const listenEditComment = (form) => {
+function listenShowDeleteForm (button) {
+    const overlay = document.querySelector(".overlay");
+    const commentId = button.dataset.commentId;
+    const formModal = document.querySelector(`.modal-delete[data-comment-id="${commentId}"]`);
+    const showForm = (event) => {  
+        formModal.classList.toggle("show");
+        overlay.classList.toggle("active");
+    }
+
+    button.addEventListener("click", showForm);
+
+}
+
+function listenCloseModal (button) {
+    const overlay = document.querySelector(".overlay");
+    const commentId = button.dataset.commentId;
+    const formModal = document.querySelector(`.modal[data-comment-id="${commentId}"]`);
+
+    const closeForm = (event) => {  
+        formModal.classList.remove("show");
+        overlay.classList.remove("active");
+    }
+
+    button.addEventListener("click", closeForm);
+
+}
+
+function listenCloseModalDelete (button) {
+    const overlay = document.querySelector(".overlay");
+    const commentId = button.dataset.commentId;
+    const formModal = document.querySelector(`.modal-delete[data-comment-id="${commentId}"]`);
+
+    const closeForm = (event) => {  
+        formModal.classList.remove("show");
+        overlay.classList.remove("active");
+    }
+
+    button.addEventListener("click", closeForm);
+
+}
+
+function listenEditComment(form) {
+    const overlay = document.querySelector(".overlay");
+    
     const textArea = form.firstElementChild;
     const initialContent = textArea.value;
 
@@ -85,6 +140,7 @@ const listenEditComment = (form) => {
 
         commentContent.innerText = newContent;
         modal.classList.toggle("show");
+        overlay.classList.toggle("active");
         
     }
 
@@ -93,11 +149,16 @@ const listenEditComment = (form) => {
 
 addListenerToElements(".btn--delete", listenDeleteButton);
 addListenerToElements(".btn--modal-show", listenShowEditForm);
+addListenerToElements(".btn--delete-show", listenShowDeleteForm);
 addListenerToElements(".form--edit", listenEditComment);
+addListenerToElements(".btn--close-modal", listenCloseModal);
+addListenerToElements(".btn--close-modal--delete", listenCloseModalDelete);
 
 
 
 addComment.addEventListener("submit", async (event) => {
+
+    const overlay = document.querySelector(".overlay");
     event.preventDefault();
 
     const targetUrl = addComment.action;
@@ -118,7 +179,10 @@ addComment.addEventListener("submit", async (event) => {
     allCommentPage.innerHTML = comments;
     addListenerToElements(".btn--delete", listenDeleteButton);
     addListenerToElements(".btn--modal-show", listenShowEditForm);
+    addListenerToElements(".btn--delete-show", listenShowDeleteForm);
     addListenerToElements(".form--edit", listenEditComment);
+    addListenerToElements(".btn--close-modal", listenCloseModal);
+    addListenerToElements(".btn--close-modal--delete", listenCloseModalDelete);
     
 });
 

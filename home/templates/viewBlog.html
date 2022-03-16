@@ -7,28 +7,37 @@
 {% block meta %}
     {% load static %}
     
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link href="{% static 'css/form.css' %}" rel="stylesheet">
     <script defer src="{% static 'js/crudComment.js' %}"></script>
     
 {% endblock %}
 
 
 {% block content %} 
-    <article>
-        <h2>{{post.title}}</h2>
-        <p>{{post.content}}</p>
-    </article>
 
-    <form method="POST" action="{% url 'addComment' post.id %}" id="add-comment">
-        {% csrf_token %}
-        <ul>
-            <li>
-                <label for="content">Content</label>
-                <textarea id="content" name="content"></textarea>
-            </li>
-            <button type="submit" id="btn--add">Comment</button>
-        </ul>
-    </form>
+    <main class="post-content">
+        <article>
+            <h2 class="big-text poppins">{{post.title}}</h2>
+            <p class="small-text">{{post.content}}</p>
+        </article>
+    </main>
 
+    <div class="chevron"></div>
+    <div class="comment-form-div">
+        <h4 class="mid-text">Comment up</h4>
+        {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'addComment' post.id %}" id="add-comment" class="comment-form">
+            {% csrf_token %}
+                <textarea id="content" name="content" placeholder="Say something..."></textarea>
+                <div>
+                    <button class="button button-small button--eton" type="submit" id="btn--add">Comment</button>
+                </div>
+            </ul>
+        </form>
+        {% endif %}
+        <p class="mid-text">All comments</p>
+    </div>
     <div class="comments">
         {% include "comments.html" %}
     </div>

@@ -4,6 +4,8 @@ from .views import *
 urlpatterns = [
     path("", homePage, name="home"),
     path("create-blog/", createBlogPost, name="createBlog"),
+    path("profile/", profile, name="profile"),
+    path("searchblog/", searchBlog, name="searchBlog"),
     path("blog/<int:id>/", viewBlogPost, name="viewBlog"),
     path("delete-comment/<int:id>/", deleteComment, name="deleteComment"),
     path("add-comment/<int:postId>/", addComment, name="addComment"),

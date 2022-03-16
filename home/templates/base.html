@@ -18,6 +18,8 @@
 
 </head>
 <body>
+    <div class="overlay">   
+    </div>
     <nav class="navbar">
         <div class="navbar__logo">
             <a href="/" class="logo">It's Me!</a>
@@ -26,9 +28,10 @@
             <li><a href="/profile">My Stories</a></li>
             <li><a href="/searchblog">My Blog</a></li>
             {% if user.is_authenticated %}
+            <li><a href="/account/logout">Logout</a></li>
             <li><p>Hello, {{user}}!</p></li>
             {% else %}
-            <li href="/account/login">Log in</li>
+            <li><a href="/account/login">Log in</a></li>
             {% endif %}
         </ul>
 
